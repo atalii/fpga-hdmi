@@ -3,7 +3,7 @@ synth:
 		-D LEDS_NR=6 -D OSC_TYPE_OSC -D INV_BTN=0 \
 		-D CPU_FREQ=27 -D BAUD_RATE=115200 -D NUM_HCLK=5 \
 		-D HAS_FLASH608K -D RISCV_MEM_48K \
-		-p "read_verilog -sv src/top.v; synth_gowin -json top.json"
+		-p "read_verilog -sv src/top.v src/tmds.v; synth_gowin -json top.json"
 
 	nextpnr-himbaechel \
 		--json top.json \
