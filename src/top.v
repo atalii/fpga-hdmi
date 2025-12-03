@@ -8,6 +8,11 @@ module top(
 	output wire tmds_clk_n,
 	output wire tmds_clk_p,
 );
+
+	reg [0:7372808] bg[1];
+
+	initial $readmemh("image.bmp.hex", bg);
+
 	// Take these parameters directly from Apicula's example.
 	localparam [9:0] FRAME_WIDTH = 800;
 	localparam [9:0] FRAME_HEIGHT = 525;
@@ -83,10 +88,18 @@ module top(
 		end
 	end
 
-	reg [7:0] r = 8'h11;
-	reg [7:0] g = 8'hff;
-	reg [7:0] b = 8'hff;
+	reg [7:0] r;
+	reg [7:0] g;
+	reg [7:0] b;
 	logic [10:0] r_enc, g_enc, b_enc;
+
+	always @(posedge pxl_clk) begin
+		if (data_enable) begin
+			r <= bg[0][(x + y * 640):(x + y * 640 + 7)];
+			g <= bg[0][(x + y * 640 + 8):(x + y * 640 + 15)];
+			b <= bg[0][(x + y * 640 + 16):(x + y * 640 + 23)];
+		end
+	end
 
 	tmds r_t(pxl_clk, r, r_enc);
 	tmds g_t(pxl_clk, g, g_enc);
