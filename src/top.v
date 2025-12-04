@@ -83,9 +83,9 @@ module top(
 		end
 	end
 
-	reg [7:0] r = 8'h11;
-	reg [7:0] g = 8'hff;
-	reg [7:0] b = 8'hff;
+	reg [7:0] r;
+	reg [7:0] g = 8'h34;
+	reg [7:0] b = 8'h56;
 	logic [10:0] r_enc, g_enc, b_enc;
 
 	tmds r_t(pxl_clk, r, r_enc);
@@ -96,6 +96,7 @@ module top(
 	reg [2:0] tmds_phys_vals;
 	
 	always @(posedge pxl_clk) begin
+		r <= x < 50 && y < 50 ? 8'hff : 8'h45;
 		if (data_enable) begin
 			tmds_logical_vals[0] <= b_enc;
 		end else begin
