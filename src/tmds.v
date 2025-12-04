@@ -5,14 +5,20 @@ module tmds(
 );
 	logic [8:0] q_m;
 	logic [9:0] q_out;
-	logic signed [7:0] n1, n0, n1q7, n0q7;
+	logic signed [31:0] n1, n0, n1q7, n0q7;
 	logic signed [31:0] cnt = 0;
+
+	function logic signed [31:0] countones(input logic [7:0] in);
+		countones = 0;
+		for (int i = 0; i < 7; i++) begin
+			countones = countones + {30'b0, in[i]};
+		end
+	endfunction
 
 	// Just do what the spec says, except that we're doing control signals
 	// at a higher level and don't need to worry about that here.
 	always @(posedge clk) begin
-		n1 = din[0] + din[1] + din[2] + din[3] + din[4] + din[5] + din[6] + din[7];
-		n0 = !din[0] + !din[1] + !din[2] + !din[3] + !din[4] + !din[5] + !din[6] + !din[7];
+		n1 = countones(din);
 
 		if (n1 > 4 || n1 == 4 && din[0]) begin
 			q_m[0] = din[0];
@@ -36,8 +42,8 @@ module tmds(
 			q_m[8] = 0;
 		end
 
-		n1q7 = q_m[0] + q_m[1] + q_m[2] + q_m[3] + q_m[4] + q_m[5] + q_m[6] + q_m[7];
-		n0q7 = !q_m[0] + !q_m[1] + !q_m[2] + !q_m[3] + !q_m[4] + !q_m[5] + !q_m[6] + !q_m[7];
+		n1q7 = countones(q_m[7:0]);
+		n0q7 = 8 - n1q7;
 
 		if (cnt == 0 || n1q7 == n0q7) begin
 			q_out[9] = ~q_m[8];
