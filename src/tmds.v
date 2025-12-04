@@ -5,8 +5,8 @@ module tmds(
 );
 	logic [8:0] q_m;
 	logic [9:0] q_out;
-	integer n1, n0, n1q7, n0q7;
-	reg signed [31:0] cnt = 0;
+	logic signed [7:0] n1, n0, n1q7, n0q7;
+	logic signed [31:0] cnt = 0;
 
 	// Just do what the spec says, except that we're doing control signals
 	// at a higher level and don't need to worry about that here.
@@ -42,7 +42,7 @@ module tmds(
 		if (cnt == 0 || n1q7 == n0q7) begin
 			q_out[9] = ~q_m[8];
 			q_out[8] = q_m[8];
-			q_out[0:7] = q_m[8] ? q_m[0:7] : ~q_m[0:7];
+			q_out[7:0] = q_m[8] ? q_m[7:0] : ~q_m[7:0];
 
 			if (q_m[8] == 0) begin
 				cnt = cnt + (n0q7 - n1q7);
@@ -53,12 +53,12 @@ module tmds(
 			if ((cnt > 0 && n1q7 > n0q7) || (cnt < 0 && n0q7 > n1q7)) begin
 				q_out[9] = 1;
 				q_out[8] = q_m[8];
-				q_out[0:7] = ~q_m[0:7];
+				q_out[7:0] = ~q_m[7:0];
 				cnt = cnt + 2 * q_m[8] + (n0q7 - n1q7);
 			end else begin
 				q_out[9] = 0;
 				q_out[8] = q_m[8];
-				q_out[0:7] = q_m[0:7];
+				q_out[7:0] = q_m[7:0];
 				cnt = cnt - 2 * !q_m[8] + (n1q7 - n0q7);
 			end
 		end
