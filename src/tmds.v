@@ -20,17 +20,7 @@ module tmds(
 	always @(posedge clk) begin
 		n1 = countones(din);
 
-		if (n1 > 4 || n1 == 4 && din[0]) begin
-			q_m[0] = din[0];
-			q_m[1] = q_m[0] ^ din[1];
-			q_m[2] = q_m[1] ^ din[2];
-			q_m[3] = q_m[2] ^ din[3];
-			q_m[4] = q_m[3] ^ din[4];
-			q_m[5] = q_m[4] ^ din[5];
-			q_m[6] = q_m[5] ^ din[6];
-			q_m[7] = q_m[6] ^ din[7];
-			q_m[8] = 1;
-		end else begin
+		if (n1 > 4 || (n1 == 4 && din[0])) begin
 			q_m[0] = din[0];
 			q_m[1] = !(q_m[0] ^ din[1]);
 			q_m[2] = !(q_m[1] ^ din[2]);
@@ -40,6 +30,16 @@ module tmds(
 			q_m[6] = !(q_m[5] ^ din[6]);
 			q_m[7] = !(q_m[6] ^ din[7]);
 			q_m[8] = 0;
+		end else begin
+			q_m[0] = din[0];
+			q_m[1] = q_m[0] ^ din[1];
+			q_m[2] = q_m[1] ^ din[2];
+			q_m[3] = q_m[2] ^ din[3];
+			q_m[4] = q_m[3] ^ din[4];
+			q_m[5] = q_m[4] ^ din[5];
+			q_m[6] = q_m[5] ^ din[6];
+			q_m[7] = q_m[6] ^ din[7];
+			q_m[8] = 1;
 		end
 
 		n1q7 = countones(q_m[7:0]);
