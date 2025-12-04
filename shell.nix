@@ -9,5 +9,6 @@ pkgs.mkShell {
     just
     python313Packages.apycula
     nextpnr
+    verilator
   ];
 }
