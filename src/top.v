@@ -9,7 +9,7 @@ module top(
 	output wire tmds_clk_p,
 );
 
-	reg [0:320 * 240 * 8 * 3] bg[1];
+	reg [0:7372808] bg[1];
 
 	initial $readmemh("image.bmp.hex", bg);
 
