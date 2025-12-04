@@ -83,14 +83,14 @@ module top(
 		end
 	end
 
-	reg [7:0] r = 8'h11;
-	reg [7:0] g = 8'hff;
-	reg [7:0] b = 8'hff;
+	reg [7:0] r, g, b;
 	logic [10:0] r_enc, g_enc, b_enc;
 
 	tmds r_t(pxl_clk, r, r_enc);
 	tmds g_t(pxl_clk, g, g_enc);
 	tmds b_t(pxl_clk, b, b_enc);
+
+	gol gol(clk, pxl_clk, x, y, r, g, b);
 
 	reg [9:0] tmds_logical_vals[2:0];
 	reg [2:0] tmds_phys_vals;
