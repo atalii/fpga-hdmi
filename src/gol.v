@@ -52,26 +52,18 @@ module gol(
 	always @(posedge clk) begin
 		logic [7:0] neighbors_bitmap;
 		int count; 
-		logic n, w, s, e;
 		for (int i = 0; i < 20; i++) begin
 			for (int j = 0; j < 24; j++) begin
-
 				if (delay_counter == 28'hffffff) begin
-					n = i == 0  ? 19 : i;
-					s = i == 19 ? 0  : i;
-
-					e = j ==  0 ? 23 : j;
-					w = j == 23 ? 0  : j;
-
 					count = $countones(
-						{board[n][e],
-						board[n][j],
-						board[n][w],
-						board[i][e],
-						board[i][w],
-						board[s][e],
-						board[s][j],
-						board[s][w]});
+						{board[i + 1][j - 1],
+						board[i + 1][j],
+						board[i + 1][j + 1],
+						board[i][j - 1],
+						board[i][j + 1],
+						board[i - 1][j - 1],
+						board[i - 1][j],
+						board[i - 1][j + 1]});
 
 					board[i][j] <= (board[i][j] && count == 2) || count == 3;
 				end
