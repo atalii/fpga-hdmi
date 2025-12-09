@@ -162,7 +162,6 @@ module top(
 		.RESET(rst)
 	);
 
-
 	ELVDS_OBUF tmds_bufds [3:0] (
 		.I({pxl_clk, tmds_phys_vals}),
 		.O({tmds_clk_p, tmds_tx_p}),
