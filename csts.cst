@@ -13,9 +13,6 @@ IO_PORT "leds[4]" PULL_MODE=UP DRIVE=8;
 IO_LOC  "leds[5]" 16;
 IO_PORT "leds[5]" PULL_MODE=UP DRIVE=8;
 
-IO_LOC  "rst_i" 4;
-IO_PORT "rst_i" IO_TYPE=LVCMOS18 PULL_MODE=UP;
-
 IO_LOC  "tmds_tx_p[0]" 71;
 IO_PORT "tmds_tx_p[0]" PULL_MODE=NONE DRIVE=8;
 IO_LOC  "tmds_tx_n[0]" 70;
