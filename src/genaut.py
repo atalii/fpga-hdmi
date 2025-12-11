@@ -3,9 +3,8 @@
 # Generating this in a for loop in Verilog causes Yosys to crash. Lol.
 
 CLK = "delay_counter[24]"
-CELL_DIM = 32;
-WIDTH = 640 // CELL_DIM;
-HEIGHT = 480 // CELL_DIM;
+WIDTH = 10
+HEIGHT = 9
 
 STARTUP = [
         (0, 0),

@@ -18,10 +18,10 @@ module gol(
 	output logic [7:0] g,
 	output logic [7:0] b
 );
-	parameter WIDTH  = 20;
-	parameter HEIGHT = 15;
+	parameter WIDTH  = 10;
+	parameter HEIGHT = 9;
 
-	logic board[WIDTH][HEIGHT];
+	logic board[HEIGHT][WIDTH];
 
 	reg [24:0] delay_counter = 0;
 	always @(posedge clk) begin
@@ -32,21 +32,12 @@ module gol(
 		for (int i = 0; i < HEIGHT; i++) begin
 			for (int j = 0; j < WIDTH; j++) begin
 				board[i][j] =
-					// square
-                                       (i == 4 && j == 4) ||
-                                       (i == 5 && j == 4) ||
-                                       (i == 4 && j == 5) ||
-                                       (i == 5 && j == 5) /* ||
-                                       // blinker
-                                       (i == 8 && j == 8) ||
-                                       (i == 8 && j == 9) ||
-                                       (i == 8 && j == 10) ||
                                        // glider
-                                       (i == 15 && j == 3) ||
-                                       (i == 16 && j == 4) ||
-                                       (i == 14 && j == 5) ||
-                                       (i == 15 && j == 5) ||
-                                       (i == 16 && j == 5); */;
+                                       (i == 6 && j == 6) ||
+                                       (i == 7 && j == 7) ||
+                                       (i == 8 && j == 5) ||
+                                       (i == 8 && j == 6) ||
+                                       (i == 8 && j == 7);
 
 			end
 		end
@@ -57,13 +48,17 @@ module gol(
 
 	always_comb begin
 		if (x % 32 == 0 || y % 32 == 0) begin
-			r <= 8'h00;
-			g <= 8'h00;
-			b <= 8'h00;
+			r = 8'h00;
+			g = 8'h00;
+			b = 8'h00;
+		end else if (x < 32 * 5 || x > 32 * 15 || y < 32 * 3 || y > 32 * 12) begin
+			r = 8'h11;
+			g = 8'h11;
+			b = 8'h11;
 		end else begin
-			r <= board[y / 32][x / 32] ? 0 : 8'hff;
-			g <= board[y / 32][x / 32] ? 0 : 8'hff;
-			b <= board[y / 32][x / 32] ? 0 : 8'hff;
+			r = board[y / 32 - 3][x / 32 - 5] ? 0 : 8'hff;
+			g = board[y / 32 - 3][x / 32 - 5] ? 0 : 8'hff;
+			b = board[y / 32 - 3][x / 32 - 5] ? 0 : 8'hff;
 		end
 	end
 endmodule
