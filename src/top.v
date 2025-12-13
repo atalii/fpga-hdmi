@@ -3,11 +3,17 @@
 module top(
 	input wire clk,
 
+	input wire [2:0] left,
+	input wire [2:0] right,
+
 	output wire [2:0] tmds_tx_n,
 	output wire [2:0] tmds_tx_p,
 	output wire tmds_clk_n,
 	output wire tmds_clk_p,
+	output wire [5:0] leds,
 );
+	assign leds[5:0] = {left, right};
+
 	// Take these parameters directly from Apicula's example.
 	localparam [9:0] FRAME_WIDTH = 800;
 	localparam [9:0] FRAME_HEIGHT = 525;

@@ -13,6 +13,20 @@ IO_PORT "leds[4]" PULL_MODE=UP DRIVE=8;
 IO_LOC  "leds[5]" 16;
 IO_PORT "leds[5]" PULL_MODE=UP DRIVE=8;
 
+IO_LOC  "right[0]" 85;
+IO_PORT "right[0]" PULL_MODE=DOWN;
+IO_LOC  "right[1]" 84;
+IO_PORT "right[1]" PULL_MODE=DOWN;
+IO_LOC  "right[2]" 83;
+IO_PORT "right[2]" PULL_MODE=DOWN;
+
+IO_LOC  "left[0]" 25;
+IO_PORT "left[0]" PULL_MODE=DOWN;
+IO_LOC  "left[1]" 26;
+IO_PORT "left[1]" PULL_MODE=DOWN;
+IO_LOC  "left[2]" 27;
+IO_PORT "left[2]" PULL_MODE=DOWN;
+
 IO_LOC  "tmds_tx_p[0]" 71;
 IO_PORT "tmds_tx_p[0]" PULL_MODE=NONE DRIVE=8;
 IO_LOC  "tmds_tx_n[0]" 70;
