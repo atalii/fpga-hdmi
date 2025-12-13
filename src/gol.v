@@ -1,13 +1,3 @@
-module aut(
-	input wire clk,
-	input reg [7:0] neighbors,
-	output reg state
-);
-	always @(posedge clk) begin
-		state <= (state && $countones(neighbors) == 2) || $countones(neighbors) == 3;
-	end
-endmodule
-
 module gol(
 	input wire clk,
 	input wire pxl_clk,
