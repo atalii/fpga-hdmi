@@ -96,7 +96,7 @@ module top(
 	tmds g_t(pxl_clk, g, g_enc);
 	tmds b_t(pxl_clk, b, b_enc);
 
-	gol gol(clk, pxl_clk, x, y, r, g, b);
+	gol gol(clk, left, right, x, y, r, g, b);
 
 	reg [9:0] tmds_logical_vals[2:0];
 	reg [2:0] tmds_phys_vals;

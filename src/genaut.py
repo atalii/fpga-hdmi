@@ -19,6 +19,9 @@ if __name__ == '__main__':
 
     for i in range(0, WIDTH):
         for j in range(0, HEIGHT):
+            if (i == 0 or i == WIDTH - 1) and (j >= 3 and j < 6):
+                continue
+
             count = f"""$countones({{
                   board[{HEIGHT - 1 if j == 0 else j - 1}][{WIDTH - 1 if i == 0 else i - 1}],
                   board[{HEIGHT - 1 if j == 0 else j - 1}][{i                             }],

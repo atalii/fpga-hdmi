@@ -63,69 +63,6 @@ board[2][0] <= (board[2][0] && $countones({
                   board[3][1]
                 })
              == 3;
-board[3][0] <= (board[3][0] && $countones({
-                  board[2][9],
-                  board[2][0],
-                  board[2][1],
-                  board[3][9],
-                  board[3][1],
-                  board[4][9],
-                  board[4][0],
-                  board[4][1]
-                })
-             == 2) || $countones({
-                  board[2][9],
-                  board[2][0],
-                  board[2][1],
-                  board[3][9],
-                  board[3][1],
-                  board[4][9],
-                  board[4][0],
-                  board[4][1]
-                })
-             == 3;
-board[4][0] <= (board[4][0] && $countones({
-                  board[3][9],
-                  board[3][0],
-                  board[3][1],
-                  board[4][9],
-                  board[4][1],
-                  board[5][9],
-                  board[5][0],
-                  board[5][1]
-                })
-             == 2) || $countones({
-                  board[3][9],
-                  board[3][0],
-                  board[3][1],
-                  board[4][9],
-                  board[4][1],
-                  board[5][9],
-                  board[5][0],
-                  board[5][1]
-                })
-             == 3;
-board[5][0] <= (board[5][0] && $countones({
-                  board[4][9],
-                  board[4][0],
-                  board[4][1],
-                  board[5][9],
-                  board[5][1],
-                  board[6][9],
-                  board[6][0],
-                  board[6][1]
-                })
-             == 2) || $countones({
-                  board[4][9],
-                  board[4][0],
-                  board[4][1],
-                  board[5][9],
-                  board[5][1],
-                  board[6][9],
-                  board[6][0],
-                  board[6][1]
-                })
-             == 3;
 board[6][0] <= (board[6][0] && $countones({
                   board[5][9],
                   board[5][0],
@@ -1762,69 +1699,6 @@ board[2][9] <= (board[2][9] && $countones({
                   board[3][8],
                   board[3][9],
                   board[3][0]
-                })
-             == 3;
-board[3][9] <= (board[3][9] && $countones({
-                  board[2][8],
-                  board[2][9],
-                  board[2][0],
-                  board[3][8],
-                  board[3][0],
-                  board[4][8],
-                  board[4][9],
-                  board[4][0]
-                })
-             == 2) || $countones({
-                  board[2][8],
-                  board[2][9],
-                  board[2][0],
-                  board[3][8],
-                  board[3][0],
-                  board[4][8],
-                  board[4][9],
-                  board[4][0]
-                })
-             == 3;
-board[4][9] <= (board[4][9] && $countones({
-                  board[3][8],
-                  board[3][9],
-                  board[3][0],
-                  board[4][8],
-                  board[4][0],
-                  board[5][8],
-                  board[5][9],
-                  board[5][0]
-                })
-             == 2) || $countones({
-                  board[3][8],
-                  board[3][9],
-                  board[3][0],
-                  board[4][8],
-                  board[4][0],
-                  board[5][8],
-                  board[5][9],
-                  board[5][0]
-                })
-             == 3;
-board[5][9] <= (board[5][9] && $countones({
-                  board[4][8],
-                  board[4][9],
-                  board[4][0],
-                  board[5][8],
-                  board[5][0],
-                  board[6][8],
-                  board[6][9],
-                  board[6][0]
-                })
-             == 2) || $countones({
-                  board[4][8],
-                  board[4][9],
-                  board[4][0],
-                  board[5][8],
-                  board[5][0],
-                  board[6][8],
-                  board[6][9],
-                  board[6][0]
                 })
              == 3;
 board[6][9] <= (board[6][9] && $countones({

@@ -1,6 +1,8 @@
 module gol(
 	input wire clk,
-	input wire pxl_clk,
+
+	input wire [2:0] left,
+	input wire [2:0] right,
 
 	input logic [9:0] x,
 	input logic [9:0] y,
@@ -12,6 +14,14 @@ module gol(
 	parameter HEIGHT = 9;
 
 	logic board[HEIGHT][WIDTH];
+
+	assign board[3][0] = left[0];
+	assign board[4][0] = left[1];
+	assign board[5][0] = left[2];
+
+	assign board[3][WIDTH - 1] = right[0];
+	assign board[4][WIDTH - 1] = right[1];
+	assign board[5][WIDTH - 1] = right[2];
 
 	logic [9:0] l_score;
 	logic [9:0] r_score;
