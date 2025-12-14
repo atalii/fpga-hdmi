@@ -32,25 +32,34 @@ module gol(
 	end
 
 	always @(posedge delay_counter[24]) begin
-		r_score <= r_score + $countones({
-			board[0][0],
-			board[1][0],
-			board[2][0],
-			board[6][0],
-			board[7][0],
-			board[8][0]
-		});
+			r_score <= r_score + ($countones({
+			  board[9][1], board[0][1], board[2][1]
+			}) == 3) + ($countones({
+			  board[0][1], board[1][1], board[2][1]
+			}) == 3) + ($countones({
+			  board[1][1], board[2][1], board[3][1]
+			}) == 3) + ($countones({
+			  board[5][1], board[6][1], board[7][1]
+			}) == 3) + ($countones({
+			  board[6][1], board[7][1], board[8][1]
+			}) == 3) + ($countones({
+			  board[7][1], board[8][1], board[0][1]
+			}) == 3);
 
-		l_score <= l_score + $countones({
-			board[0][9],
-			board[1][9],
-			board[2][9],
-			board[6][9],
-			board[7][9],
-			board[8][9]
-		});
+			l_score <= l_score + ($countones({
+			  board[9][8], board[0][8], board[2][8]
+			}) == 3) + ($countones({
+			  board[0][8], board[1][8], board[2][8]
+			}) == 3) + ($countones({
+			  board[1][8], board[2][8], board[3][8]
+			}) == 3) + ($countones({
+			  board[5][8], board[6][8], board[7][8]
+			}) == 3) + ($countones({
+			  board[6][8], board[7][8], board[8][8]
+			}) == 3) + ($countones({
+			  board[7][8], board[8][8], board[0][8]
+			}) == 3);
 	end
-
 
 	initial begin
 		for (int i = 0; i < HEIGHT; i++) begin

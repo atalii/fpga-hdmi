@@ -19,8 +19,9 @@ if __name__ == '__main__':
 
     for i in range(0, WIDTH):
         for j in range(0, HEIGHT):
-            if (i == 0 or i == WIDTH - 1) and (j >= 3 and j < 6):
-                continue
+            if i == 0 or i == WIDTH - 1: continue
+
+            else: target = f"board[{j}][{i}] <="
 
             count = f"""$countones({{
                   board[{HEIGHT - 1 if j == 0 else j - 1}][{WIDTH - 1 if i == 0 else i - 1}],
@@ -33,6 +34,6 @@ if __name__ == '__main__':
                   board[{0 if j == HEIGHT - 1 else j + 1}][{0 if i == WIDTH - 1 else i + 1}]
                 }})
             """
-            print(f"board[{j}][{i}] <= (board[{j}][{i}] && {count} == 2) || {count} == 3;")
+            print(f"{target} ((board[{j}][{i}] && {count} == 2) || {count} == 3);")
 
     print("end")
