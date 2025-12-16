@@ -10,5 +10,7 @@ pkgs.mkShell {
     python313Packages.apycula
     nextpnr
     verilator
+    xdot
+    typst
   ];
 }
