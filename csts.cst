@@ -20,7 +20,7 @@ IO_PORT "right[1]" PULL_MODE=DOWN;
 IO_LOC  "right[2]" 83;
 IO_PORT "right[2]" PULL_MODE=DOWN;
 
-IO_LOC  "left[0]" 25;
+IO_LOC  "left[0]" 29;
 IO_PORT "left[0]" PULL_MODE=DOWN;
 IO_LOC  "left[1]" 26;
 IO_PORT "left[1]" PULL_MODE=DOWN;
